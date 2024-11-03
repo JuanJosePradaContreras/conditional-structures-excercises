@@ -1,41 +1,32 @@
-#Ejercicio 3
+#Ejercicio 4
 
-#Escriba un programa que pida dos números enteros y que calcule la división, indicando si la división es exacta o no.
+#Escriba un programa que pida al usuario dos palabras, y que indique cuál de ellas es la más larga y por cuántas letras lo es.
 
-#Dividendo: 14
-#Divisor: 5
+#Palabra 1: edificio
+#Palabra 2: tren
+#La palabra edificio tiene 4 letras mas que tren.
+#Palabra 1: sol
+#Palabra 2: paralelepipedo
+#La palabra paralelepipedo tiene 11 letras mas que sol
+#Palabra 1: plancha
+#Palabra 2: lapices
+#Las dos palabras tienen el mismo largo
 
-#La división no es exacta.
-#Cociente: 2
-#Resto: 4
-#Dividendo: 100
-#Divisor: 10
-
-#La división es exacta.
-#Cociente: 10
-#Resto: 0
-
-def division_exacta():
-    while True:
-        try:
-            dividendo = int(input("Introduce the dividend: "))
-            divisor = int(input("Introduce the dividend: "))
-            
-            if divisor == 0:
-                print("The divisor can't be 0.")
-                continue
-            
-            cociente = dividendo // divisor
-            resto = dividendo % divisor
-            
-            if resto == 0:
-                print("The division is exactly.")
-            else:
-                print("The division isn't exactly.")
-            
-            print(f"Cociente: {cociente}")
-            print(f"Resto: {resto}")
-            break
-        
-        except ValueError:
-            print("Please just enter integrers.")
+def comp_words():
+   
+    word_1 = input("Introduce the first word: ")
+    word_2 = input("Introduce the second word: ")
+    
+    
+    lenght_1 = len(word_1)
+    lenght_2 = len(word_2)
+    
+    
+    if lenght_1 > lenght_2:
+        diference = lenght_1 - lenght_2
+        print(f"The word {word_1} has {diference} more characters than {word_2}.")
+    elif lenght_2 > lenght_1:
+        diference = lenght_2 - lenght_1
+        print(f"The word {word_2} has {diference} more characters than {word_1}.")
+    else:
+        print("The two words has the same lenght")
