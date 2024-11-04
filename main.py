@@ -1,16 +1,25 @@
-#Ejercicio 5
+#Ejercicio 6
 
-def ordenar_numeros():
-    # Solicitar los cinco números al usuario
-    numeros = []
-    for i in range(5):
-        num = int(input(f"Introduce el número {i + 1}: "))
-        numeros.append(num)
-    
-    # Ordenar los números
-    numeros.sort()
-    
-    # Mostrar los números ordenados
-    print("Los números ordenados de menor a mayor son:", ", ".join(map(str, numeros)))
+#Escriba un programa que determine si un caracter ingresado es letra, número, o ninguno de los dos. En caso que sea letra, 
+#determine si es mayúscula o minúscula.
 
-ordenar_numeros()
+def clasificar_caracter():
+    
+    caracter = input("Introduce a character: ")
+
+    
+    if len(caracter) != 1:
+        print("Please, introduce a character")
+        return
+
+    if caracter.isalpha():
+        if caracter.isupper():
+            print(f"The character '{caracter}' is a capital letter")
+        else:
+            print(f"The character '{caracter}' is a lowercase letter.")
+    elif caracter.isdigit():
+        print(f"The character '{caracter}' is a number.")
+    else:
+        print(f"The character '{caracter}' isn't a letter and a number.")
+
+clasificar_caracter()
