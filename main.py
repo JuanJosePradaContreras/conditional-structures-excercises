@@ -1,32 +1,41 @@
 #Ejercicio 10
 
-#Los tres lados a, b y c de un triángulo deben satisfacer la desigualdad triangular: cada uno de los lados no puede ser más largo que la suma de los otros 
-#dos.
+#El riesgo de que una persona sufra enfermedades coronarias depende de su edad y su índice de masa corporal:
 
-#Escriba un programa que reciba como entrada los tres lados de un triángulo, e indique:
+# 	edad < 45	edad ≥ 45
+#IMC < 22.0	bajo	medio
+#IMC ≥ 22.0	medio	alto
+#El índice de masa corporal es el cuociente entre el peso del individuo en kilos y el cuadrado de su estatura en metros.
 
-#si acaso el triángulo es inválido; y
-#si no lo es, qué tipo de triángulo es.
+#Escriba un programa que reciba como entrada la estatura, el peso y la edad de una persona, y le entregue su condición de riesgo.
 
-def tipo_triangulo(a, b, c):
-    if a + b <= c or a + c <= b or b + c <= a:
-        return "El triángulo es inválido."
-    
-    
-    if a == b == c:
-        return "El triángulo es equilátero."
-    elif a == b or a == c or b == c:
-        return "El triángulo es isósceles."
+def calcular_riesgo(edad, imc):
+    if edad < 45:
+        if imc < 22.0:
+            return "bajo"
+        else:
+            return "medio"
     else:
-        return "El triángulo es escaleno."
+        if imc < 22.0:
+            return "medio"
+        else:
+            return "alto"
+
+def main():
+    
+    estatura = float(input("Ingrese su estatura en metros: "))
+    peso = float(input("Ingrese su peso en kilogramos: "))
+    edad = int(input("Ingrese su edad: "))
+    
+    
+    imc = peso / (estatura ** 2)
+    
+    
+    riesgo = calcular_riesgo(edad, imc)
+    
+    
+    print(f"Su índice de masa corporal (IMC) es: {imc:.2f}")
+    print(f"Su condición de riesgo es: {riesgo}")
 
 
-a = float(input("Ingrese el lado a: "))
-b = float(input("Ingrese el lado b: "))
-c = float(input("Ingrese el lado c: "))
-
-
-resultado = tipo_triangulo(a, b, c)
-
-
-print(resultado)
+main()
