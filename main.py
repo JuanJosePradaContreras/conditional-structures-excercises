@@ -1,49 +1,46 @@
-#Ejercicio 8
+#Ejercicio 9
 
-#Escriba un programa que entregue la edad del usuario a partir de su fecha de nacimiento:
+#El joven periodista Solarrabietas debe relatar un partido de tenis, pero no conoce las reglas del deporte. En particular, no ha logrado aprender cómo saber 
+#si un set ya terminó, y quién lo ganó.
 
-#Ingrese su fecha de nacimiento.
-#Dia: 14
-#Mes: 6
-#Anno: 1948
-#Usted tiene 62 annos
-#Por supuesto, el resultado entregado depende del día en que su programa será ejecutado.
+#Un partido de tenis se divide en sets. Para ganar un set, un jugador debe ganar 6 juegos, pero además debe haber ganado por lo menos dos juegos más que su 
+#rival. Si el set está empatado a 5 juegos, el ganador es el primero que llegue a 7. Si el set está empatado a 6 juegos, el set se define en un último juego,
+# en cuyo caso el resultado final es 7-6.
 
-#Para obtener la fecha actual, puede hacerlo usando la función localtime que viene en el módulo time. Los valores se obtienen de la 
-#siguiente manera (suponiendo que hoy es 11 de marzo de 2011):
+#Sabiendo que el jugador A ha ganado m juegos, y el jugador B, n juegos, al periodista le gustaría saber:
 
-#>>> from time import localtime
-#>>> t = localtime()
-#>>> t.tm_mday
-#11
-#>>> t.tm_mon
-#3
-#>>> t.tm_year
-#2011
-#El programa debe tener en cuenta si el cumpleaños ingresado ya pasó durante este año, o si todavía no ocurre.#
+#si A ganó el set, o
+#si B ganó el set, o
+#si el set todavía no termina, o
+#si el resultado es inválido (por ejemplo, 8-6 o 7-3).
+#Desarrolle un programa que solucione el problema de Solarrabietas:
 
-from time import localtime
-
-def calcular_edad():
-   
-    t = localtime()
-    dia_actual = t.tm_mday
-    mes_actual = t.tm_mon
-    anno_actual = t.tm_year
+def estado_set(m, n):
     
+    if (m >= 7 and m - n < 2) or (n >= 7 and n - m < 2) or (m > 7 and n >= 6) or (n > 7 and m >= 6):
+        return "Resultado inválido"
     
-    dia_nacimiento = int(input("Ingrese su día de nacimiento: "))
-    mes_nacimiento = int(input("Ingrese su mes de nacimiento: "))
-    anno_nacimiento = int(input("Ingrese su año de nacimiento: "))
-    
-   
-    edad = anno_actual - anno_nacimiento
-    
-    
-    if (mes_nacimiento > mes_actual) or (mes_nacimiento == mes_actual and dia_nacimiento > dia_actual):
-        edad -= 1
-    
-    print(f"Usted tiene {edad} años.")
+
+    if m >= 6 and m - n >= 2:
+        return "El jugador A ganó el set"
+    elif n >= 6 and n - m >= 2:
+        return "El jugador B ganó el set"
+    elif m >= 5 and n >= 5:
+        if m == 6 and n == 6:
+            return "El set está en un tie-break, resultado: 7-6"
+        elif m >= 7:
+            return "El jugador A ganó el set"
+        elif n >= 7:
+            return "El jugador B ganó el set"
+    else:
+        return "El set todavía no ha terminado"
 
 
-calcular_edad()
+m = int(input("Ingrese los juegos ganados por el jugador A: "))
+n = int(input("Ingrese los juegos ganados por el jugador B: "))
+
+
+resultado = estado_set(m, n)
+
+
+print(resultado)
