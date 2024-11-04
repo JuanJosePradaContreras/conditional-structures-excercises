@@ -1,25 +1,34 @@
-#Ejercicio 6
+#Ejercicio 7
 
-#Escriba un programa que determine si un caracter ingresado es letra, número, o ninguno de los dos. En caso que sea letra, 
-#determine si es mayúscula o minúscula.
+#Escriba un programa que simule una calculadora básica, este puede realizar operación de suma, resta, multiplicación y división.
+#El programa debe recibir como entrada 2 números reales y un operador, que puede ser +, -, * o /.
+#La salida del programa debe ser el resultado de la operación.
 
-def clasificar_caracter():
-    
-    caracter = input("Introduce a character: ")
+def calculadora():
 
-    
-    if len(caracter) != 1:
-        print("Please, introduce a character")
-        return
+    try:
+        num1 = float(input("Introduce el primer número: "))
+        num2 = float(input("Introduce el segundo número: "))
+        operador = input("Introduce el operador (+, -, *, /): ")
 
-    if caracter.isalpha():
-        if caracter.isupper():
-            print(f"The character '{caracter}' is a capital letter")
+        if operador == "+":
+            resultado = num1 + num2
+            print(f"El resultado de {num1} + {num2} es: {resultado}")
+        elif operador == "-":
+            resultado = num1 - num2
+            print(f"El resultado de {num1} - {num2} es: {resultado}")
+        elif operador == "*":
+            resultado = num1 * num2
+            print(f"El resultado de {num1} * {num2} es: {resultado}")
+        elif operador == "/":
+            if num2 != 0:
+                resultado = num1 / num2
+                print(f"El resultado de {num1} / {num2} es: {resultado}")
+            else:
+                print("Error: No se puede dividir entre cero.")
         else:
-            print(f"The character '{caracter}' is a lowercase letter.")
-    elif caracter.isdigit():
-        print(f"The character '{caracter}' is a number.")
-    else:
-        print(f"The character '{caracter}' isn't a letter and a number.")
+            print("Operador no válido. Por favor, utiliza +, -, * o /.")
+    except ValueError:
+        print("Error: Por favor, introduce números válidos.")
 
-clasificar_caracter()
+calculadora()
